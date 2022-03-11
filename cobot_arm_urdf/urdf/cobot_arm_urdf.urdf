@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="cobot_arm_urdf">
+
+  <material name="blue">
+    <color rgba="0.156 0.2 0.314 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0.25098 0.25098 0.25098 1" />    
+  </material>
+
+  <material name="gold">
+    <color rgba="1.0 0.8745 0.0 1" />    
+  </material>
+
+  <!-- Dummy Link -->
+  <link name="robot_footprint" />
+
+  <joint name="footprint_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <child link="base_link" />
+    <parent link="robot_footprint" />
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.00047113 0.01 1.5359E-16" rpy="0 0 0" />
+      <mass value="42.676" />
+      <inertia ixx="5.1788" ixy="5.6018E-18" ixz="3.2196E-13" iyy="19.441" iyz="9.6284E-19" izz="14.265" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/base_link.STL" />
+      </geometry>
+      <material name="black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="Link_0">
+    <inertial>
+      <origin xyz="7.2923E-09 0.093033 0.030451" rpy="0 0 0" />
+      <mass value="20.025" />
+      <inertia ixx="0.42483" ixy="5.8477E-08" ixz="-2.2478E-08" iyy="0.49934" iyz="-0.042653" izz="0.33923" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_0.STL" />
+      </geometry>
+      <material name="white" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_0.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_0_Fixed" type="fixed">
+    <origin xyz="-0.2 0 0.02" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="Link_0" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="Link_1">
+    <inertial>
+      <origin xyz="-1.5709E-10 0.21351 -7.2382E-18" rpy="0 0 0" />
+      <mass value="14.438" />
+      <inertia ixx="0.27994" ixy="-1.2695E-09" ixz="1.2578E-09" iyy="0.10762" iyz="-2.8073E-15" izz="0.30662" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_1.STL" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_1" type="revolute">
+    <origin xyz="0 0.16 0" rpy="0 0 0" />
+    <parent link="Link_0" />
+    <child link="Link_1" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.3562" upper="2.3562" effort="5" velocity="1" />
+  </joint>
+  <link name="Link_2">
+    <inertial>
+      <origin xyz="-1.6653E-16 1.8287E-12 -0.1916" rpy="0 0 0" />
+      <mass value="15.486" />
+      <inertia ixx="0.71676" ixy="-3.154E-12" ixz="-4.87E-16" iyy="0.62209" iyz="3.1566E-12" izz="0.15746" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_2.STL" />
+      </geometry>
+      <material name="white" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_2" type="revolute">
+    <origin xyz="0 0.336 0" rpy="-1.5708 0 3.1416" />
+    <parent link="Link_1" />
+    <child link="Link_2" />
+    <axis xyz="0 1 0" />
+    <limit lower="-2.18" upper="2.18" effort="5" velocity="1" />
+  </joint>
+  <link name="Link_3">
+    <inertial>
+      <origin xyz="0.031575 0.10794 -1.3858E-08" rpy="0 0 0" />
+      <mass value="7.7708" />
+      <inertia ixx="0.056614" ixy="-0.0098902" ixz="-3.0059E-08" iyy="0.058884" iyz="-7.9913E-09" izz="0.088878" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_3.STL" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_3" type="revolute">
+    <origin xyz="0 0 -0.5" rpy="1.5708 1.5708 0" />
+    <parent link="Link_2" />
+    <child link="Link_3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.02" upper="0.60" effort="5" velocity="1" />
+  </joint>
+  <link name="Link_4">
+    <inertial>
+      <origin xyz="0.12986 -4.6577E-06 -6.4336E-05" rpy="0 0 0" />
+      <mass value="4.2007" />
+      <inertia ixx="0.01409" ixy="-2.657E-07" ixz="-4.9703E-06" iyy="0.036461" iyz="-1.3682E-06" izz="0.034904" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_4.STL" />
+      </geometry>
+      <material name="white" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_4" type="revolute">
+    <origin xyz="0.19746 0.145 0" rpy="0 0 0" />
+    <parent link="Link_3" />
+    <child link="Link_4" />
+    <axis xyz="1 0 0" />
+    <limit lower="-1.5714" upper="1.5714" effort="5" velocity="1" />
+  </joint>
+  <link name="Link_5">
+    <inertial>
+      <origin xyz="0.018265 2.5601E-11 1.014E-07" rpy="0 0 0" />
+      <mass value="1.1219" />
+      <inertia ixx="0.0021242" ixy="2.9136E-09" ixz="-1.6916E-09" iyy="0.0054371" iyz="-2.7465E-09" izz="0.0059471" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_5.STL" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/Link_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_5" type="revolute">
+    <origin xyz="0.23 0 0" rpy="0 0 0" />
+    <parent link="Link_4" />
+    <child link="Link_5" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.16" upper="2.16" effort="5" velocity="1" />
+  </joint>
+  <link name="End_Tool">
+    <inertial>
+      <origin xyz="0.020268 0.00036256 1.149E-14" rpy="0 0 0" />
+      <mass value="0.05861" />
+      <inertia ixx="1.4239E-05" ixy="-2.6177E-08" ixz="1.7055E-21" iyy="1.5132E-05" iyz="-1.87E-20" izz="1.5702E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/End_Tool.STL" />
+      </geometry>
+      <material name="gold" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://cobot_arm_urdf/meshes/End_Tool.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Joint_6" type="revolute">
+    <origin xyz="0.12 0 0" rpy="0 0 0" />
+    <parent link="Link_5" />
+    <child link="End_Tool" />
+    <axis xyz="1 0 0" />
+    <limit lower="-3.1416" upper="3.1416" effort="5" velocity="1" />
+  </joint>
+
+  <!-- Tool Tip Link -->
+  <link name="tool_tip" />
+
+  <joint name="tool_tip_joint" type="fixed">
+    <origin xyz="0.07439 0 0" rpy="0 0 0" />
+    <child link="tool_tip" />
+    <parent link="End_Tool" />
+  </joint>
+
+</robot>
